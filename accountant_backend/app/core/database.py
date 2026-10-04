@@ -2,7 +2,7 @@ from typing import AsyncGenerator
 from sqlalchemy.ext.asyncio import AsyncAttrs, AsyncSession, async_sessionmaker, create_async_engine
 from sqlalchemy.orm import DeclarativeBase
 
-from app.config import settings
+from accountant_backend.app.core.config import settings
 
 engine = create_async_engine(url=settings.get_db_url, echo=True)
 async_session_maker = async_sessionmaker(engine, expire_on_commit=False)

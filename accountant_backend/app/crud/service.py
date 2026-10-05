@@ -3,9 +3,8 @@ from typing import Sequence
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.models.service import Service  # Укажи правильный импорт твоей модели
-from app.schemas.service import ServiceCreate, ServiceUpdate
-
+from app.models import Service 
+from app.schemas import ServiceCreate, ServiceUpdate
 
 async def create_service(
     db: AsyncSession, service_in: ServiceCreate, user_id: uuid.UUID
@@ -26,7 +25,7 @@ async def get_services_by_user(
 
 
 async def get_service_by_id(
-    db: AsyncSession, service_id: int, user_id: uuid.UUID
+    db: AsyncSession, service_id: uuid.UUID, user_id: uuid.UUID
 ) -> Service | None:
     stmt = select(Service).where(
         Service.id == service_id, Service.user_id == user_id

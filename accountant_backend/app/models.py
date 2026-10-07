@@ -8,7 +8,7 @@ from sqlalchemy import String, ForeignKey, DateTime, Numeric, Integer, Text, fun
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from accountant_backend.app.core.database import Base
+from app.core.database import Base
 
 
 class PriceType(str, enum.Enum):

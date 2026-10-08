@@ -28,7 +28,7 @@ async def create_service(
     return await crud_service.create_service(db=db, user_id=user_id, service_in=service_in)
 
 @router.get('/{service_id}', response_model=ServiceResponse)
-async def read_services(
+async def read_service(
     service_id: uuid.UUID,
     db: AsyncSession = Depends(get_db),
     user_id: uuid.UUID = Depends(get_current_user_id)

@@ -28,7 +28,7 @@ async def create_client(
     return await crud_client.create_client(db=db, client_in=client_in, user_id=user_id)
 
 @router.get('/{client_id}', response_model=ClientResponse)
-async def read_services(
+async def read_client(
     client_id: uuid.UUID,
     db: AsyncSession = Depends(get_db),
     user_id: uuid.UUID = Depends(get_current_user_id)
@@ -40,7 +40,7 @@ async def read_services(
     return client
 
 @router.patch('/{client_id}', response_model=ClientResponse, status_code=status.HTTP_200_OK)
-async def update_service(
+async def update_client(
     client_id: uuid.UUID,
     client_in: ClientUpdate,
     db: AsyncSession = Depends(get_db),

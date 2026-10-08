@@ -28,6 +28,30 @@ class UserResponse(UserBase):
     id: uuid.UUID
     created_at: datetime
 
+class ClientBase(BaseModel):
+    first_name: str
+    last_name: str
+    phone: str = Field(..., max_length=11)
+    telegram_username: str
+    notes: Optional[str] = None
+    is_active: bool = True
+
+class ClientCreate(ClientBase):
+    pass
+
+class ClientUpdate(BaseModel):
+    first_name: Optional[str] = None
+    last_name: Optional[str] = None
+    phone: Optional[str] = None
+    telegram_username: Optional[str] = None
+    notes: Optional[str] = None
+    is_active: Optional[bool] = None
+
+class ClientResponse(ClientBase):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: uuid.UUID
+    created_at: datetime
 
 class ServiceBase(BaseModel):
     name: str = Field(..., max_length=150)

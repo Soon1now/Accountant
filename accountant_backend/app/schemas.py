@@ -29,7 +29,7 @@ class UserResponse(UserBase):
 class ClientBase(BaseModel):
     first_name: str
     last_name: str
-    phone: str = Field(..., max_length=11)
+    phone: str = Field(..., max_length=12)
     telegram_username: str
     notes: Optional[str] = None
     is_active: bool = True
@@ -98,7 +98,7 @@ class BillingPlanResponse(BillingPlanBase):
     model_config = ConfigDict(from_attributes=True)
 
     id: uuid.UUID
-    service_id: int
+    service_id: uuid.UUID
 
 class Token(BaseModel):
     access_token: str

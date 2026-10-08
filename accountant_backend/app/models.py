@@ -1,5 +1,5 @@
 import datetime
-import enum
+from enum import Enum
 import uuid
 from typing import List, Optional
 from decimal import Decimal
@@ -11,19 +11,19 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.core.database import Base
 
 
-class PriceType(str, enum.Enum):
+class PriceType(str, Enum):
     FIXED = "fixed"
     FLEXIBLE = "flexible"
 
 
-class BillingPeriod(str, enum.Enum):
+class BillingPeriod(str, Enum):
     PER_LESSON = "per_lesson"
     WEEKLY = "weekly"
     MONTHLY = "monthly"
     CUSTOM_DAYS = "custom_days"
 
 
-class PaymentStatus(str, enum.Enum):
+class PaymentStatus(str, Enum):
     COMPLETED = "completed"
     PENDING = "pending"
     CANCELED = "canceled"

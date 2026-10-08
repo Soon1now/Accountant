@@ -3,8 +3,8 @@ from typing import Sequence
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from accountant_backend.app.models import Client
-from accountant_backend.app.schemas import ClientCreate, ClientUpdate
+from app.models import Client
+from app.schemas import ClientCreate, ClientUpdate
 
 
 async def create_client(db: AsyncSession, client_in: ClientCreate, user_id: uuid.UUID) -> Client:

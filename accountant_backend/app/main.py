@@ -1,9 +1,9 @@
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 from app.api.services import router as services_router
-from accountant_backend.app.api.clients import router as clients_router
+from app.api.clients import router as clients_router
 from app.api.billing_plans import router as billing_plans_router
-from api.payments import router as payments_router
+from app.api.payments import router as payments_router
 
 app = FastAPI(title='Accountant App')
 

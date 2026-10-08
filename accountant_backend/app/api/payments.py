@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, status, HTTPException
 from typing import List
 import uuid
-from app.schemas import P, PaymentResponse
+from app.schemas import PaymentCreate, PaymentResponse
 from app.core.database import get_db
 from app.crud import payment as crud_payment
 from sqlalchemy.ext.asyncio import AsyncSession

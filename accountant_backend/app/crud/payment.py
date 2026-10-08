@@ -3,8 +3,8 @@ from typing import Sequence
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from accountant_backend.app.models import Payment, Client
-from accountant_backend.app.schemas import PaymentCreate
+from app.models import Payment, Client
+from app.schemas import PaymentCreate
 
 
 async def create_payment(db: AsyncSession, payment_in: PaymentCreate, user_id: uuid.UUID) -> Payment:

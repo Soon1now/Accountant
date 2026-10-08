@@ -4,7 +4,7 @@ from decimal import Decimal
 from enum import Enum
 from typing import Optional
 from pydantic import BaseModel, ConfigDict, EmailStr, Field
-from models import PaymentStatus, PriceType, BillingPeriod
+from app.models import PaymentStatus, PriceType, BillingPeriod
 
 class UserBase(BaseModel):
     email: EmailStr

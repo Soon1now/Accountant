@@ -3,8 +3,8 @@ from typing import Sequence
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from accountant_backend.app.models import BillingPlan, Service
-from accountant_backend.app.schemas import BillingPlanCreate, BillingPlanUpdate
+from app.models import BillingPlan, Service
+from app.schemas import BillingPlanCreate, BillingPlanUpdate
 
 
 async def create_billing_plan(db: AsyncSession, plan_in: BillingPlanCreate, user_id: uuid.UUID) -> BillingPlan:

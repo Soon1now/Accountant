@@ -126,3 +126,52 @@ class PaymentResponse(PaymentBase):
     service_id: Optional[uuid.UUID] = None
     payment_date: datetime
     created_at: datetime
+
+class ClientServiceBase(BaseModel):
+    custom_price: Optional[Decimal] = None
+    custom_billing_day: Optional[int] = None
+    is_active: bool = True
+
+class ClientServiceCreate(ClientServiceBase):
+    client_id: uuid.UUID
+    billing_plan_id: uuid.UUID
+
+class ClientServiceUpdate(BaseModel):
+    custom_price: Optional[Decimal] = None
+    custom_billing_day: Optional[int] = None
+    is_active: Optional[bool] = None
+
+class ClientServiceResponse(ClientServiceBase):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: uuid.UUID
+    client_id: uuid.UUID
+    billing_plan_id: uuid.UUID
+    start_date: datetime.date
+
+class ScheduleEventBase(BaseModel):
+    start_time: datetime
+    end_time: datetime
+    is_completed: bool = False
+    price_at_event: Decimal
+    notes: Optional[str] = None
+
+class ScheduleEventCreate(ScheduleEventBase):
+    client_id: uuid.UUID
+    service_id: Optional[uuid.UUID] = None
+
+class ScheduleEventUpdate(BaseModel):
+    start_time: Optional[datetime] = None
+    end_time: Optional[datetime] = None
+    is_completed: Optional[bool] = None
+    price_at_event: Optional[Decimal] = None
+    notes: Optional[str] = None
+
+class ScheduleEventResponse(ScheduleEventBase):
+    model_config = ConfigDict(from_attributes=True)
+
+    id: uuid.UUID
+    user_id: uuid.UUID
+    client_id: uuid.UUID
+    service_id: Optional[uuid.UUID] = None
+    created_at: datetime

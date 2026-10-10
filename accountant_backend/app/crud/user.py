@@ -2,7 +2,7 @@ import uuid
 from typing import Sequence
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-
+from app.core.security import hash_password
 
 from app.models import User 
 from app.schemas import UserCreate
@@ -11,7 +11,9 @@ async def create_user(
     db: AsyncSession,
     user_in: UserCreate
 ) -> User:
-    db_user = User(**user_in.model_dump(exclude({"password"})), password_hash = user_in.password)
+    hashed_pwd = hash_password(user_in.password)
+
+    db_user = User(**user_in.model_dump(exclude={"password"}), password_hash=hashed_pwd)
     db.add(db_user)
     await db.commit()
     await db.refresh(db_user)

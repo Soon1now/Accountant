@@ -5,7 +5,7 @@ from app.schemas import PaymentCreate, PaymentResponse
 from app.core.database import get_db
 from app.crud import payment as crud_payment
 from sqlalchemy.ext.asyncio import AsyncSession
-from dependencies import get_current_user_id
+from app.api.dependencies import get_current_user_id
 
 router = APIRouter(prefix="/payments", tags=["Payments"])
 

@@ -147,7 +147,7 @@ class ClientServiceResponse(ClientServiceBase):
     id: uuid.UUID
     client_id: uuid.UUID
     billing_plan_id: uuid.UUID
-    start_date: datetime.date
+    start_date: datetime
 
 class ScheduleEventBase(BaseModel):
     start_time: datetime

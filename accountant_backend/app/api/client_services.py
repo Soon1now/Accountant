@@ -5,8 +5,7 @@ from app.schemas import ClientServiceCreate, ClientServiceUpdate, ClientServiceR
 from app.core.database import get_db
 from app.crud import client_service as crud_client_service
 from sqlalchemy.ext.asyncio import AsyncSession
-from dependencies import get_current_user_id
-from models import User
+from app.api.dependencies import get_current_user_id
 
 router = APIRouter(prefix="/client-services", tags=["Client Services"])
 

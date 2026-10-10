@@ -5,7 +5,7 @@ from app.schemas import ClientCreate, ClientUpdate, ClientResponse
 from app.core.database import get_db
 from app.crud import client as crud_client
 from sqlalchemy.ext.asyncio import AsyncSession
-from dependencies import get_current_user_id
+from app.api.dependencies import get_current_user_id
 
 router = APIRouter(prefix="/clients", tags=["Clients"])
 

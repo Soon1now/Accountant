@@ -5,11 +5,9 @@ from app.schemas import BillingPlanCreate, BillingPlanResponse, BillingPlanUpdat
 from app.core.database import get_db
 from app.crud import billing_plan as crud_billing_plan
 from sqlalchemy.ext.asyncio import AsyncSession
+from dependencies import get_current_user_id
 
 router = APIRouter(prefix="/billing_plans", tags=["BillingsPlans"])
-
-async def get_current_user_id() -> uuid.UUID:
-    return uuid.UUID("3b54b92a-a5af-4d47-9c77-f7a2eddb9d42")
 
 @router.get('/', response_model=List[BillingPlanResponse])
 async def read_plans(

@@ -5,11 +5,9 @@ from app.schemas import PaymentCreate, PaymentResponse
 from app.core.database import get_db
 from app.crud import payment as crud_payment
 from sqlalchemy.ext.asyncio import AsyncSession
+from dependencies import get_current_user_id
 
 router = APIRouter(prefix="/payments", tags=["Payments"])
-
-async def get_current_user_id() -> uuid.UUID:
-    return uuid.UUID("3b54b92a-a5af-4d47-9c77-f7a2eddb9d42")
 
 @router.get('/', response_model=List[PaymentResponse])
 async def read_payments(

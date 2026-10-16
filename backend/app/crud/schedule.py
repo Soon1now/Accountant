@@ -1,7 +1,7 @@
 import uuid
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
-from app.models.models import ScheduleEvent
+from app.models import ScheduleEvent
 from app.schemas import ScheduleEventCreate, ScheduleEventUpdate
 
 async def get_schedule_events_by_user(db: AsyncSession, user_id: uuid.UUID) -> list[ScheduleEvent]:

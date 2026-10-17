@@ -24,7 +24,7 @@ export const clients: Client[] = [
         created_at: '2026-09-15T14:30:00Z',
     },
     {
-        id: '6ba7b810-9dad-11d1-80b4-00c04fd430c8',
+        id: '6ba7b810-9dad-11d1-80b4-00c04fd430c7',
         first_name: 'Петр',
         last_name: 'Сидоров',
         phone: '+7 (999) 765-43-21',
@@ -34,7 +34,7 @@ export const clients: Client[] = [
         created_at: '2026-09-15T14:30:00Z',
     },
     {
-        id: '6ba7b810-9dad-11d1-80b4-00c04fd430c8',
+        id: '6ba7b810-9dad-11d1-80b4-00c04fd430c6',
         first_name: 'Петр',
         last_name: 'Сидоров',
         phone: '+7 (999) 765-43-21',
@@ -44,7 +44,7 @@ export const clients: Client[] = [
         created_at: '2026-09-15T14:30:00Z',
     },
     {
-        id: '6ba7b810-9dad-11d1-80b4-00c04fd430c8',
+        id: '6ba7b810-9dad-11d1-80b4-00c04fd430c5',
         first_name: 'Петр',
         last_name: 'Сидоров',
         phone: '+7 (999) 765-43-21',

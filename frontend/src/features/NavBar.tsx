@@ -2,9 +2,10 @@ import NavItem from "./NavItem";
 import { useState } from "react";
 
 const menuItems = [
-    { name: "dashboard", label: 'Дашборд', to: '/dashboard' },
+    { name: "dashboard", label: 'Дашборд', to: '/' },
     { name: "clients", label: 'Клиенты', to: '/clients' },
     { name: "services", label: 'Сервисы', to: '/services' },
+    { name: "plans", label: 'Тарифы', to: '/plans' },
     { name: "schedule", label: 'Расписание', to: '/schedule' },
 ];
 
@@ -20,7 +21,7 @@ export default function NavBar() {
                     label={item.label}
                     onclick={() => handleClick(item.name)}
                     isActive={activeItem == item.name}
-                    toPath = {item.to}
+                    toPath={item.to}
                     key={item.to}
                 />)}
         </nav>

@@ -2,9 +2,11 @@
 @import "tailwindcss";
 :root{
   font-size: large;
+  color: rgb(32, 63, 154);
 }
 @theme {
   --font-unbounded: "Unbounded", sans-serif;
   --color-soft-blue: rgba(148, 194, 218, 25%);
   --color-blue: rgb(32, 63, 154);
+  --color-lime: rgb(221, 243, 68);
 }

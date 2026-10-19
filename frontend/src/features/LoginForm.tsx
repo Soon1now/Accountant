@@ -13,7 +13,7 @@ export default function LoginForm({
         password: "",
     };
 
-    const { form, error, loading, handleChange, handleSubmit } = useForm<FormData>(initialForm, login, 'Неверный логин или пароль. попробуйте снова.');
+    const { form, error, loading, handleChange, handleSubmit } = useForm<FormData>(initialForm, login, 'Неверный логин или пароль. Попробуйте снова.');
 
     return (
         <form onSubmit={handleSubmit} className="space-y-5">

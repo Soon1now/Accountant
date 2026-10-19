@@ -1,6 +1,6 @@
 import NavItem from "./NavItem";
 import { useState } from "react";
-
+import {useAuth} from '../entities/authContext'
 const menuItems = [
     { name: "dashboard", label: 'Дашборд', to: '/' },
     { name: "clients", label: 'Клиенты', to: '/clients' },
@@ -14,6 +14,7 @@ export default function NavBar() {
     const handleClick = (activeItem: string) => {
         setActive(activeItem)
     }
+    const {logout} = useAuth();
     return (
         <nav className="flex p-4 space-x-6 items-end">
             {menuItems.map((item) =>
@@ -24,6 +25,8 @@ export default function NavBar() {
                     toPath={item.to}
                     key={item.to}
                 />)}
+            <button onClick={logout}>
+                выход</button>
         </nav>
     )
 }

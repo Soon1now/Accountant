@@ -1,8 +1,9 @@
-import { clients } from "../entities/clientContext";
+import { useClient } from "../entities/clientContext";
 import ToolBar from "../features/ToolBar";
 import ClientCard from "../shared/ui/ClientCard";
 
 export default function ClientPage() {
+    const { clients } = useClient();
     return (
         <main className="p-6">
             <div className="flex items-center justify-between px-2 py-1">

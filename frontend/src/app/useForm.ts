@@ -30,7 +30,7 @@ export default function useForm<T>(
         } catch (err: any) {
             setError(
                 err.response?.data?.detail ||
-                { errorText }
+                 errorText 
             );
         } finally {
             setLoading(false);

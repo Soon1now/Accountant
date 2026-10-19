@@ -14,9 +14,12 @@ export default function ClientCard({ client }) {
 
                 <div className="min-w-0 flex-1">
                     <h3 className="truncate font-semibold  text-wrap">
-                        {name}
+                        {client.first_name}
                     </h3>
-
+                    <h3 className="truncate font-semibold  text-wrap">
+                        {client.last_name}
+                    </h3>
+                    
                     <p className="mt-0.5 text-sm text-slate-500">
                         {client.phone}
                     </p>

@@ -5,7 +5,7 @@ import {
     useEffect,
     type ReactNode,
 } from "react";
-import { AuthService } from "../shared/api/auth";
+import { authService } from "../shared/api/auth";
 import type { UserCreate, FormData } from "../shared/api/auth";
 
 interface AuthContextType {
@@ -25,17 +25,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const [isLoad, setIsLoad] = useState(true);
 
     useEffect(() => {
-        const token = localStorage.getItem("accesss_token");
+        const token = localStorage.getItem("access_token");
         token && setIsAuth(true);
         setIsLoad(false);
     }, []);
     const login = async (data: FormData) => {
-        const { access_token } = await AuthService.login(data);
+        const { access_token } = await authService.login(data);
         localStorage.setItem("access_token", access_token);
         setIsAuth(true);
     }
     const register = async (data: UserCreate) => {
-        await AuthService.register(data);
+        await authService.register(data);
+        await authService.login(data);
     }
     const logout = () => {
         localStorage.removeItem("access_token");

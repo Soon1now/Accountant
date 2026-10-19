@@ -1,4 +1,4 @@
-import { api } from '../api/axiosIstance'
+import { api } from './axiosInstance'
 import type { components } from "../types/api.generated";
 
 export type UserResponse = components['schemas']['UserResponse']
@@ -6,7 +6,7 @@ export type UserCreate = components['schemas']['UserCreate']
 export type TokenResponse = components['schemas']['Token']
 
 export type FormData = { email: string; password: string }
-export const AuthService = {
+export const authService = {
 
     login: async (credentials: FormData): Promise<TokenResponse> => {
         const formData = new URLSearchParams()

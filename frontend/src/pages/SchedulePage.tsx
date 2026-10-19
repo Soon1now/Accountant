@@ -1,4 +1,3 @@
-// pages/SchedulePage.tsx
 import { useState } from "react";
 import { isSameDay, format, parseISO } from "date-fns";
 import { ru } from "date-fns/locale";

@@ -1,17 +1,22 @@
-import { clientService, type ClientCreate, type ClientResponse, type ClientUpdate } from '../shared/api/client'
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import { clientService, type ClientCreate, type ClientResponse } from '../shared/api/client'
+import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import { useAuth } from "./authContext";
 
 interface ClientContextType {
     clients: ClientResponse[];
     getClients: () => Promise<ClientResponse[]>;
+    createClient: (formData: ClientCreate) => Promise<ClientResponse>;
+     filteredClients: ClientResponse[];
+    setSearch: (value: string) => void;
+    search: string;
 }
 
 const ClientContext = createContext<ClientContextType | null>(null);
 
 export function ClientProvider({ children }: { children: ReactNode }) {
     const { isAuth } = useAuth();
-    const [clients, setClients] = useState<ClientResponse[]>([])
+    const [clients, setClients] = useState<ClientResponse[]>([]);
+    const [search, setSearch] = useState('');
 
     const getClients = async (): Promise<ClientResponse[]> => {
         const data = await clientService.getClients();
@@ -19,6 +24,17 @@ export function ClientProvider({ children }: { children: ReactNode }) {
         return data;
     };
 
+    const createClient = async (formData: ClientCreate): Promise<ClientResponse> => {
+        const newClient = await clientService.createClient(formData);
+        setClients((prevClients) => [...prevClients, newClient]);
+        return newClient;
+    };
+    const filteredClients = useMemo(() =>
+        clients.filter(c =>
+            c.first_name.toLowerCase().includes(search.toLowerCase()) ||
+            c.last_name.toLowerCase().includes(search.toLowerCase())
+        ), [search, clients]
+    );
     useEffect(() => {
         if (isAuth) {
             getClients();
@@ -30,7 +46,7 @@ export function ClientProvider({ children }: { children: ReactNode }) {
 
     return (
         <ClientContext.Provider
-            value={{ clients, getClients }}
+            value={{ clients, getClients, createClient, filteredClients, setSearch, search }}
         >
             {children}
         </ClientContext.Provider>

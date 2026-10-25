@@ -1,6 +1,5 @@
-import { startOfMonth, startOfWeek, addDays, isSameMonth, isSameDay, isToday, format, getMonth } from "date-fns";
+import { startOfMonth, startOfWeek, addDays, isSameMonth, isSameDay, isToday, format } from "date-fns";
 import { ru } from "date-fns/locale";
-import StatusActive from "./StatusActive";
 
 export function getMonthMatrix(month: Date): Date[][] {
   const firstMonday = startOfWeek(startOfMonth(month), { weekStartsOn: 1 });

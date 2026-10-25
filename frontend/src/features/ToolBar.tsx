@@ -1,13 +1,20 @@
-import { useState } from "react";
 import SearchInput from "./SearchInput";
-import AddButton from "../shared/ui/AddButton";
+import Button from "../shared/ui/Button";
 
-export default function ToolBar() {
-    const [search, setSearch] = useState('');
+interface ToolBarProps {
+    search: string;
+    setSearch: (string) => void;
+    modalState: () => void;
+}
+export default function ToolBar({
+    search,
+    setSearch,
+    modalState,
+}: ToolBarProps) {
     return (
         <aside className="p-4 flex gap-6">
-            <SearchInput value={search} onChange={setSearch}/>
-            <AddButton text="Добавить"></AddButton>
+            <SearchInput value={search} onChange={setSearch} />
+            <Button onClick={modalState} text="Добавить"></Button>
         </aside>
     );
 }

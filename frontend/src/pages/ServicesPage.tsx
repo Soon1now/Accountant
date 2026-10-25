@@ -1,8 +1,9 @@
-import { services } from "../entities/serviceContext";
+import { useService } from "../entities/serviceContext";
 import ToolBar from "../features/ToolBar";
 import ServiceCard from "../shared/ui/ServiceCard";
 
 export default function ServicesPage() {
+    const {services} = useService();
     return (
         <main className="p-6">
             <div className="flex items-center justify-between px-2 py-1">

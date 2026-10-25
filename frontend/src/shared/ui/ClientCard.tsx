@@ -1,7 +1,6 @@
 import StatusActive from "./StatusActive";
 
 export default function ClientCard({ client }) {
-    const name = `${client.first_name || ""} ${client.last_name || ""}`.trim();
     const isActive = Boolean(client.is_active);
 
     return (

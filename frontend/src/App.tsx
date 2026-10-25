@@ -5,7 +5,7 @@ import ClientPage from './pages/ClientsPage';
 import ServicesPage from './pages/ServicesPage';
 import DashboardPage from './pages/DashboardPage';
 import SheadulePage from './pages/SchedulePage';
-import BillingPlans from './pages/BillingPlansPage';
+// import BillingPlans from './pages/BillingPlansPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import ProtectedRoute from './ProtectedProvider';
@@ -21,7 +21,7 @@ export default function App() {
           <Route path='/services' element={<ServicesPage />}> </Route>
           <Route index element={<DashboardPage />} />
           <Route path='/schedule' element={<SheadulePage />}> </Route>
-          <Route path='/plans' element={<BillingPlans />}> </Route>
+          {/* <Route path='/plans' element={<BillingPlans />}> </Route> */}
         </Route>
       </Route>
     </Routes>

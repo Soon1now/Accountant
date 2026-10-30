@@ -7,8 +7,20 @@ from app.api.payments import router as payments_router
 from app.api.auth import router as auth_router
 from app.api.schedule import router as shedule_router
 from app.api.client_services import router as client_service_router
-app = FastAPI(title='Accountant App')
+from fastapi.middleware.cors import CORSMiddleware
 
+app = FastAPI(title='Accountant App')
+origins = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,          
+    allow_credentials=True,      
+    allow_methods=["*"],    
+    allow_headers=["*"],        
+)
 app.include_router(services_router)
 app.include_router(clients_router)
 app.include_router(billing_plans_router)

@@ -1,4 +1,4 @@
-import { clientService, type ClientCreate, type ClientResponse } from '../shared/api/client'
+import { clientService, type ClientCreate, type ClientResponse, type ClientUpdate } from '../shared/api/client'
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import { useAuth } from "./authContext";
 
@@ -6,9 +6,11 @@ interface ClientContextType {
     clients: ClientResponse[];
     getClients: () => Promise<ClientResponse[]>;
     createClient: (formData: ClientCreate) => Promise<ClientResponse>;
-     filteredClients: ClientResponse[];
+    filteredClients: ClientResponse[];
     setSearch: (value: string) => void;
     search: string;
+    deleteClient: (value: string) => void;
+    updateClient: (value: string, data: ClientUpdate) => Promise<ClientResponse>;
 }
 
 const ClientContext = createContext<ClientContextType | null>(null);
@@ -29,6 +31,20 @@ export function ClientProvider({ children }: { children: ReactNode }) {
         setClients((prevClients) => [...prevClients, newClient]);
         return newClient;
     };
+
+    const deleteClient = async (clientId: string) => {
+        await clientService.deleteClient(clientId);
+        setClients((prev) => prev.filter((c) => c.id !== clientId));
+    };
+
+    const updateClient = async (clientId: string, formData: ClientUpdate): Promise<ClientResponse> => {
+        const updateClient = await clientService.updateClient(clientId, formData);
+        setClients((prevClients) =>
+            prevClients.map((c) => (c.id === clientId ? updateClient : c))
+        );
+        return updateClient;
+    };
+
     const filteredClients = useMemo(() =>
         clients.filter(c =>
             c.first_name.toLowerCase().includes(search.toLowerCase()) ||
@@ -46,7 +62,7 @@ export function ClientProvider({ children }: { children: ReactNode }) {
 
     return (
         <ClientContext.Provider
-            value={{ clients, getClients, createClient, filteredClients, setSearch, search }}
+            value={{ clients, getClients, createClient, filteredClients, setSearch, search, deleteClient, updateClient }}
         >
             {children}
         </ClientContext.Provider>

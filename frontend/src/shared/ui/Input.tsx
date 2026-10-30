@@ -17,7 +17,7 @@ export default function Input<T extends FieldValues>({
     nameField,
     register,
     errors,
-    patternRule
+    patternRule,
 }: InputProps<T>) {
     const validationRules: RegisterOptions<T, Path<T>> = {};
 

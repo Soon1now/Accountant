@@ -1,22 +1,25 @@
 import { useForm } from 'react-hook-form'
-import { type ClientCreate } from '../api/client'
-import Input from './Input';
-import Button from './Button';
+import { type ClientCreate } from '../shared/api/client'
+import Input from '../shared/ui/Input';
+import Button from '../shared/ui/Button';
 interface ClientFormProps {
     onSubmitData: (data: ClientCreate) => void;
     onCancel: () => void;
+    initialData?: ClientCreate & { id?: string };
 }
 
 export function ClientForm({
     onSubmitData,
-    onCancel
+    onCancel,
+    initialData,
 }: ClientFormProps) {
     const {
         register,
         handleSubmit,
         formState: { errors }
-    } = useForm<ClientCreate>();
+    } = useForm<ClientCreate>({ defaultValues: initialData });
     return (
+
         <form onSubmit={handleSubmit(onSubmitData)} className="space-y-4">
             <Input<ClientCreate>
                 label='Фамилия клиента'
@@ -63,7 +66,11 @@ export function ClientForm({
             />
             <div className="flex justify-end gap-3 pt-4 border-t border-slate-100">
                 <Button text='Отмена' variant='light' onClick={onCancel} />
-                <Button text='Сохранить' variant='dark' type='submit'/>
+                <Button
+                    text="Сохранить"
+                    variant="dark"
+                    type="submit"
+                />
             </div>
         </form>
     );

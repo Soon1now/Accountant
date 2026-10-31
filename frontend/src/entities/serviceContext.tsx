@@ -1,7 +1,7 @@
 import type { components } from "../shared/types/api.generated";
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import { useAuth } from "./authContext";
-import { serviceService, type ServiceCreate } from "../shared/api/service";
+import { serviceService, type ServiceCreate, type ServiceUpdate } from "../shared/api/service";
 
 type ServiceResponse = components['schemas']['ServiceResponse']
 
@@ -12,6 +12,8 @@ interface ServiceContextType {
     filteredServices: ServiceResponse[];
     setSearch: (value: string) => void;
     search: string;
+    deleteService: (value: string) => void;
+    updateService: (value: string, data: ServiceUpdate) => Promise<ServiceResponse>;
 }
 
 const ServiceContext = createContext<ServiceContextType | null>(null);
@@ -31,6 +33,19 @@ export function ServiceProvider({ children }: { children: ReactNode }) {
         setServices((prevServices) => [...prevServices, newService]);
         return newService;
     };
+    const deleteService = async (serviceId: string) => {
+        await serviceService.deleteService(serviceId);
+        setServices((prev) => prev.filter((c) => c.id !== serviceId));
+    };
+
+    const updateService = async (serviceId: string, formData: ServiceUpdate): Promise<ServiceResponse> => {
+        const updateService = await serviceService.updateService(serviceId, formData);
+        setServices((prevService) =>
+            prevService.map((c) => (c.id === serviceId ? updateService : c))
+        );
+        return updateService;
+    };
+
     const filteredServices = useMemo(() =>
         services.filter(c =>
             c.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -48,7 +63,7 @@ export function ServiceProvider({ children }: { children: ReactNode }) {
 
     return (
         <ServiceContext.Provider
-            value={{ services, getServices, createService, filteredServices, setSearch, search }}
+            value={{ services, getServices, createService, filteredServices, setSearch, search, deleteService, updateService }}
         >
             {children}
         </ServiceContext.Provider>

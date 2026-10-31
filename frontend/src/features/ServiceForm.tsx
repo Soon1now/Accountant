@@ -6,17 +6,19 @@ import Button from '../shared/ui/Button';
 interface ServiceFormProps {
     onSubmitData: (data: ServiceCreate) => void;
     onCancel: () => void;
+    initialData?: ServiceCreate & { id?: string };
 }
 
 export function ServiceForm({
     onSubmitData,
-    onCancel
+    onCancel,
+    initialData
 }: ServiceFormProps) {
     const {
         register,
         handleSubmit,
         formState: { errors }
-    } = useForm<ServiceCreate>();
+    } = useForm<ServiceCreate>({ defaultValues: initialData });
     return (
         <form onSubmit={handleSubmit(onSubmitData)} className="space-y-4">
             <Input<ServiceCreate>

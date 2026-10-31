@@ -3,11 +3,12 @@ import { type FieldErrors, type FieldValues, type Path, type RegisterOptions, ty
 interface InputProps<T extends FieldValues> {
     label: string;
     required?: string;
-    placeholder: string;
+    placeholder?: string;
     nameField: Path<T>;
     register: UseFormRegister<T>;
     errors: FieldErrors<T>;
     patternRule?: { value: RegExp, message: string }
+    type?: string;
 }
 
 export default function Input<T extends FieldValues>({
@@ -18,6 +19,7 @@ export default function Input<T extends FieldValues>({
     register,
     errors,
     patternRule,
+    type='text'
 }: InputProps<T>) {
     const validationRules: RegisterOptions<T, Path<T>> = {};
 
@@ -34,6 +36,7 @@ export default function Input<T extends FieldValues>({
                 {label}
             </label>
             <input
+                type={type}
                 {...register(nameField, validationRules)}
                 className="w-full px-3 py-2 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                 placeholder={placeholder}

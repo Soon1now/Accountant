@@ -29,7 +29,7 @@ export const scheduleService = {
         return response.data;
     },
 
-    deleteScheduleEvent: async (clientId: string) => {
-        await api.delete(`/schedule/${clientId}`);
+    deleteScheduleEvent: async (scheduleId: string) => {
+        await api.delete(`/schedule/${scheduleId}`);
     },
 }

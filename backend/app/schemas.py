@@ -1,5 +1,5 @@
 import uuid
-from datetime import datetime
+from datetime import date, time, datetime
 from decimal import Decimal
 from enum import Enum
 from typing import Optional
@@ -150,8 +150,9 @@ class ClientServiceResponse(ClientServiceBase):
     start_date: datetime
 
 class ScheduleEventBase(BaseModel):
-    start_time: datetime
-    end_time: datetime
+    date: date
+    start_time: time
+    end_time: time
     is_completed: bool = False
     price_at_event: Decimal
     notes: Optional[str] = None
@@ -161,8 +162,9 @@ class ScheduleEventCreate(ScheduleEventBase):
     service_id: Optional[uuid.UUID] = None
 
 class ScheduleEventUpdate(BaseModel):
-    start_time: Optional[datetime] = None
-    end_time: Optional[datetime] = None
+    date: Optional[date] = None
+    start_time: Optional[time] = None
+    end_time: Optional[time] = None
     is_completed: Optional[bool] = None
     price_at_event: Optional[Decimal] = None
     notes: Optional[str] = None

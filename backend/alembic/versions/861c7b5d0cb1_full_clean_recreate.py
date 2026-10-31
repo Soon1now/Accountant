@@ -1,8 +1,8 @@
-"""Initial tables
+"""full clean recreate
 
-Revision ID: 707e5234b03f
+Revision ID: 861c7b5d0cb1
 Revises: 
-Create Date: 2026-10-04 19:55:53.747980
+Create Date: 2026-10-31 20:05:52.795835
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = '707e5234b03f'
+revision: str = '861c7b5d0cb1'
 down_revision: Union[str, Sequence[str], None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -95,8 +95,9 @@ def upgrade() -> None:
     sa.Column('user_id', sa.UUID(), nullable=False),
     sa.Column('client_id', sa.UUID(), nullable=False),
     sa.Column('service_id', sa.UUID(), nullable=True),
-    sa.Column('start_time', sa.DateTime(timezone=True), nullable=False),
-    sa.Column('end_time', sa.DateTime(timezone=True), nullable=False),
+    sa.Column('date', sa.Date(), nullable=False),
+    sa.Column('start_time', sa.Time(), nullable=False),
+    sa.Column('end_time', sa.Time(), nullable=False),
     sa.Column('is_completed', sa.Boolean(), nullable=False),
     sa.Column('price_at_event', sa.Numeric(precision=10, scale=2), nullable=False),
     sa.Column('notes', sa.Text(), nullable=True),

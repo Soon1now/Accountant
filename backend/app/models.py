@@ -4,7 +4,7 @@ import uuid
 from typing import List, Optional
 from decimal import Decimal
 
-from sqlalchemy import String, ForeignKey, DateTime, Numeric, Integer, Text, func, Date
+from sqlalchemy import String, ForeignKey, DateTime, Numeric, Integer, Text, func, Date, Time
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
@@ -135,8 +135,9 @@ class ScheduleEvent(Base):
     client_id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), ForeignKey("clients.id", ondelete="CASCADE"), index=True)
     service_id: Mapped[Optional[uuid.UUID]] = mapped_column(UUID(as_uuid=True), ForeignKey("services.id", ondelete="SET NULL"), index=True)
     
-    start_time: Mapped[datetime.datetime] = mapped_column(DateTime(timezone=True))
-    end_time: Mapped[datetime.datetime] = mapped_column(DateTime(timezone=True))
+    date: Mapped[datetime.date] = mapped_column(Date)
+    start_time: Mapped[datetime.time] = mapped_column(Time)
+    end_time: Mapped[datetime.time] = mapped_column(Time)
     is_completed: Mapped[bool] = mapped_column(default=False)
     price_at_event: Mapped[Decimal] = mapped_column(Numeric(10, 2))
     notes: Mapped[Optional[str]] = mapped_column(Text, default=None)

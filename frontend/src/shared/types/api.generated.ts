@@ -572,13 +572,18 @@ export interface components {
         /** ScheduleEventCreate */
         ScheduleEventCreate: {
             /**
+             * Date
+             * Format: date
+             */
+            date: string;
+            /**
              * Start Time
-             * Format: date-time
+             * Format: time
              */
             start_time: string;
             /**
              * End Time
-             * Format: date-time
+             * Format: time
              */
             end_time: string;
             /**
@@ -601,13 +606,18 @@ export interface components {
         /** ScheduleEventResponse */
         ScheduleEventResponse: {
             /**
+             * Date
+             * Format: date
+             */
+            date: string;
+            /**
              * Start Time
-             * Format: date-time
+             * Format: time
              */
             start_time: string;
             /**
              * End Time
-             * Format: date-time
+             * Format: time
              */
             end_time: string;
             /**
@@ -644,6 +654,8 @@ export interface components {
         };
         /** ScheduleEventUpdate */
         ScheduleEventUpdate: {
+            /** Date */
+            date?: null;
             /** Start Time */
             start_time?: string | null;
             /** End Time */
